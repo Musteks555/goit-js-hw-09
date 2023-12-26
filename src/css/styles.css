@@ -24,3 +24,10 @@ body {
 
   margin: 16px;
 }
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+}
