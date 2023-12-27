@@ -28,14 +28,22 @@ form.addEventListener('input', event => {
 form.addEventListener('submit', event => {
   event.preventDefault();
 
-  console.log(event.target.elements.email.value);
-  console.log(event.target.elements.message.value);
+  if (
+    event.target.elements.email.value.trim() !== '' &&
+    event.target.elements.message.value.trim() !== ''
+  ) {
+    console.log(inputs);
 
-  localStorage.removeItem(localStorageKey);
+    localStorage.removeItem(localStorageKey);
 
-  Object.keys(inputs).forEach(key => {
-    inputs[key] = '';
-  });
+    Object.keys(inputs).forEach(key => {
+      inputs[key] = '';
+    });
 
-  event.currentTarget.reset();
+    event.currentTarget.reset();
+  } else if (event.target.elements.email.value.trim() !== '') {
+    event.target.elements.message.focus();
+  } else if (event.target.elements.message.value.trim() !== '') {
+    event.target.elements.email.focus();
+  }
 });
